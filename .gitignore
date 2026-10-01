@@ -19,3 +19,4 @@ bin/
 # 환경설정 (DB 비밀번호 등 민감정보)
 application-local.yml
 *.log
+.env
