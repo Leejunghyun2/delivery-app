@@ -4,6 +4,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.deliveryapp.global.exception.BusinessException;
+import com.example.deliveryapp.global.exception.ErrorCode;
 import com.example.deliveryapp.user.domain.User;
 import com.example.deliveryapp.user.dto.UserResponse;
 import com.example.deliveryapp.user.dto.UserSignupRequest;
@@ -22,7 +24,7 @@ public class UserService {
 	@Transactional
 	public UserResponse signup(UserSignupRequest request) {
 		if(userRepository.existsByEmail(request.email())) {
-			throw new IllegalArgumentException("이미 사용중인 이메일입니다.");
+			throw new BusinessException(ErrorCode.DUPLICATE_EMAIL);
 		}
 		
 		User user = request.toEntity(passwordEncoder.encode(request.password()));
@@ -33,7 +35,7 @@ public class UserService {
 	
 	public UserResponse findByid(Long id) {
 		User user = userRepository.findById(id)
-				.orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원입니다."));
+				.orElseThrow(() -> new BusinessException(ErrorCode.USER_NOT_FOUND));
 		
 		return UserResponse.from(user);
 	}
