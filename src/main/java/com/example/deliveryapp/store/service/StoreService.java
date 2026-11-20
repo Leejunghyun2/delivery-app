@@ -45,7 +45,7 @@ public class StoreService {
     }
 
     public List<StoreResponse> findAll() {
-        return storeRepository.findAll().stream()
+        return storeRepository.findAllWithOwner().stream()
                 .map(StoreResponse::from)
                 .toList();
     }
