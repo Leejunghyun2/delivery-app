@@ -44,8 +44,8 @@ erDiagram
 ## 진행 로드맵
 
 - [x] 프로젝트 초기 세팅 (git, .gitignore, README)
-- [ ] Spring Boot 프로젝트 생성 + 기본 CRUD (JPA, Lombok)
-- [ ] 연관관계 매핑 / N+1 문제 해결
+- [x] Spring Boot 프로젝트 생성 + 기본 CRUD (JPA, Lombok)
+- [x] 연관관계 매핑 / N+1 문제 해결
 - [ ] 검증 및 전역 예외 처리
 - [ ] 테스트 코드 (JUnit5, Testcontainers)
 - [ ] Spring Security + JWT 인증
