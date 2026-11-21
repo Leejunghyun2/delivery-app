@@ -8,10 +8,16 @@ Spring Boot 기반 미니 배달앱 프로젝트입니다. 레거시 스택(Spri
 - Spring Data JPA, Lombok
 - MySQL / PostgreSQL
 - Spring Security + JWT
-- Redis (캐싱, 랭킹)
-- RabbitMQ (비동기 알림)
-- Elasticsearch (가게/메뉴 검색)
-- Docker, GitHub Actions (CI/CD)
+- Redis (예정) - 캐싱, 랭킹, 선착순 쿠폰
+- Kafka (예정) - 주문 이벤트 처리 (주문 -> 결제 -> 알림)
+- Elasticsearch (예정) - 가게/메뉴 검색
+- Docker, GitHub Actions (예정) - CI/CD
+
+## API 문서
+
+로컬 실행 후 Swagger UI에서 확인할 수 있습니다.
+
+http://localhost:8081/swagger-ui/index.html
 
 ## 도메인 모델
 
@@ -54,3 +60,7 @@ erDiagram
 - [ ] Elasticsearch 적용 (검색)
 - [ ] Docker / Docker Compose
 - [ ] CI/CD (GitHub Actions)
+
+## 트러블슈팅
+
+개발하면서 겪은 문제와 해결 과정은 [docs/troubleshooting.md](docs/troubleshooting.md)에 정리했습니다.
