@@ -21,33 +21,30 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class StoreService {
-	
+
 	private final StoreRepository storeRepository;
 	private final UserRepository userRepository;
-	
+
 	@Transactional
-    public StoreResponse create(StoreCreateRequest request) {
-        User owner = userRepository.findById(request.ownerId())
-                .orElseThrow(() -> new BusinessException(ErrorCode.USER_NOT_FOUND));
+	public StoreResponse create(StoreCreateRequest request) {
+		User owner = userRepository.findById(request.ownerId())
+				.orElseThrow(() -> new BusinessException(ErrorCode.USER_NOT_FOUND));
 
-        if (owner.getRole() != Role.OWNER) {
-            throw new BusinessException(ErrorCode.NOT_STORE_OWNER);
-        }
+		if (owner.getRole() != Role.OWNER) {
+			throw new BusinessException(ErrorCode.NOT_STORE_OWNER);
+		}
 
-        Store store = storeRepository.save(request.toEntity(owner));
-        return StoreResponse.from(store);
-    }
+		Store store = storeRepository.save(request.toEntity(owner));
+		return StoreResponse.from(store);
+	}
 
-    public StoreResponse findById(Long id) {
-        Store store = storeRepository.findById(id)
-                .orElseThrow(() -> new BusinessException(ErrorCode.STORE_NOT_FOUND));
-        return StoreResponse.from(store);
-    }
+	public StoreResponse findById(Long id) {
+		Store store = storeRepository.findById(id).orElseThrow(() -> new BusinessException(ErrorCode.STORE_NOT_FOUND));
+		return StoreResponse.from(store);
+	}
 
-    public List<StoreResponse> findAll() {
-        return storeRepository.findAllWithOwner().stream()
-                .map(StoreResponse::from)
-                .toList();
-    }
-	
+	public List<StoreResponse> findAll() {
+		return storeRepository.findAllWithOwner().stream().map(StoreResponse::from).toList();
+	}
+
 }
