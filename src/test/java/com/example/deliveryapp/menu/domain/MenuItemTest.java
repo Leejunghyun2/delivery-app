@@ -24,7 +24,7 @@ public class MenuItemTest {
 	
 	@Test
 	@DisplayName("새로 만든 메뉴는 판매 중이다")
-	void menuItem() {
+	void createdMenuIsOnSale() {
 		MenuItem menu = MenuItem.builder()
 				.name("양념치킨")
 				.description("달짝지근")
@@ -36,7 +36,7 @@ public class MenuItemTest {
 	
 	@Test
 	@DisplayName("품절된 메뉴를 판매 재개하면 판매 중 상태가 된다")
-	void resume() {
+	void resumeSale() {
 		
 		//given
 		MenuItem menu = MenuItem.builder()
