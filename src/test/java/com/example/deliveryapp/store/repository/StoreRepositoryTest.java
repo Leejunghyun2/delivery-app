@@ -10,7 +10,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
 import org.springframework.boot.jdbc.test.autoconfigure.AutoConfigureTestDatabase;
+import org.springframework.context.annotation.Import;
 
+import com.example.deliveryapp.global.config.JpaAuditingConfig;
 import com.example.deliveryapp.store.domain.Store;
 import com.example.deliveryapp.store.domain.StoreStatus;
 import com.example.deliveryapp.user.domain.Role;
@@ -21,6 +23,7 @@ import jakarta.persistence.EntityManager;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@Import(JpaAuditingConfig.class)
 public class StoreRepositoryTest {
 
 	@Autowired
