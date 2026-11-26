@@ -2,6 +2,8 @@ package com.example.deliveryapp.store.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+
+
 import java.util.List;
 
 import org.hibernate.Hibernate;
@@ -15,15 +17,15 @@ import org.springframework.context.annotation.Import;
 import com.example.deliveryapp.global.config.JpaAuditingConfig;
 import com.example.deliveryapp.store.domain.Store;
 import com.example.deliveryapp.store.domain.StoreStatus;
+import com.example.deliveryapp.support.RepositoryTest;
 import com.example.deliveryapp.user.domain.Role;
 import com.example.deliveryapp.user.domain.User;
 import com.example.deliveryapp.user.repository.UserRepository;
 
 import jakarta.persistence.EntityManager;
 
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Import(JpaAuditingConfig.class)
+
+@RepositoryTest
 public class StoreRepositoryTest {
 
 	@Autowired
