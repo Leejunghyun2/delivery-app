@@ -36,3 +36,18 @@
 | `default_batch_fetch_size` | 2 (`in`으로 묶어서 조회) |
 
 batch size는 전역 설정으로 켜 두고, 가게 목록은 `join fetch`로 1번에 가져오도록 했다.
+
+
+## 6. @WebMvcTest에서 `JPA metamodel must not be empty`
+
+Controller 테스트를 처음 돌렸는데 컨텍스트 로딩에서 실패했다.
+메인 클래스에 붙여 둔 `@EnableJpaAuditing`이 원인이었다. `@WebMvcTest`는 웹 계층만 올리는데 메인 클래스는 읽기 때문에, JPA가 없는 상태에서 Auditing 설정이 실행됐다.
+`@EnableJpaAuditing`을 `JpaAuditingConfig`로 분리해서 해결. 메인 클래스에는 `@SpringBootApplication`만 두는 게 맞다.
+`@DataJpaTest`는 반대로 Auditing이 필요해서 `@Import`로 불러왔다.
+
+
+## 7. Repository 테스트가 로컬 MySQL에 의존
+
+`@DataJpaTest`가 개발용 MySQL에 붙어서 돌아가고 있었다. CI 서버에는 이 DB가 없어서 그대로는 실패한다.
+Testcontainers로 테스트할 때만 `mysql:8.4` 컨테이너를 띄우도록 바꿨다. `@ServiceConnection`이 접속 정보를 자동으로 연결해 준다.
+반복되는 설정은 `@RepositoryTest` 메타 어노테이션으로 묶었다. 개발 DB를 꺼 둔 상태에서도 전체 테스트가 통과하는 걸 확인했다.
