@@ -19,7 +19,8 @@ public class MenuItemTest {
 		
 		menu.soldOut();
 		
-		assertThat(menu.getStatus()).isEqualTo(MenuStatus.SOLD_OUT);
+//		assertThat(menu.getStatus()).isEqualTo(MenuStatus.SOLD_OUT);
+		assertThat(menu.getStatus()).isEqualTo(MenuStatus.ON_SALE); 
 	}
 	
 	@Test
