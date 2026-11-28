@@ -1,4 +1,5 @@
 # delivery-app
+![CI](https://github.com/Leejunghyun2/delivery-app/actions/workflows/ci.yml/badge.svg)
 
 Spring Boot 기반 미니 배달앱 프로젝트입니다. 레거시 스택(Spring MVC + MyBatis) 환경에서 벗어나 최신 백엔드 기술 스택을 단계적으로 익히기 위한 학습용 사이드 프로젝트입니다.
 
@@ -52,15 +53,19 @@ erDiagram
 - [x] 프로젝트 초기 세팅 (git, .gitignore, README)
 - [x] Spring Boot 프로젝트 생성 + 기본 CRUD (JPA, Lombok)
 - [x] 연관관계 매핑 / N+1 문제 해결
-- [ ] 검증 및 전역 예외 처리
-- [ ] 테스트 코드 (JUnit5, Testcontainers)
+- [x] 검증 및 전역 예외 처리
+- [x] 테스트 코드 (JUnit5, Mockito, Testcontainers)
+- [x] CI (GitHub Actions)
+- [x] k6 성능 측정 기준값
+- [ ] 선착순 쿠폰 동시성 처리 (DB 락 → Redis)
 - [ ] Spring Security + JWT 인증
-- [ ] Redis 적용 (캐싱, 랭킹)
-- [ ] RabbitMQ 적용 (비동기 알림)
-- [ ] Elasticsearch 적용 (검색)
 - [ ] Docker / Docker Compose
-- [ ] CI/CD (GitHub Actions)
+- [ ] Redis 적용 (캐싱, 랭킹)
+- [ ] Kafka 적용 (주문 이벤트 처리)
+- [ ] Elasticsearch 적용 (검색)
+- [ ] CD (자동 배포)
 
 ## 트러블슈팅
 
 개발하면서 겪은 문제와 해결 과정은 [docs/troubleshooting.md](docs/troubleshooting.md)에 정리했습니다.
+성능 측정 결과는 [성능 측정 기록](docs/performance.md)에 정리했습니다.
